@@ -7021,7 +7021,7 @@ Also return non-nil if it is the command `self-insert-command' is remapped to."
                            'web-mode-variable-name-face)
       )
     (cond
-     ((web-mode-looking-back "\\(css\\|styled[[:alnum:].]+\\)" beg)
+     ((web-mode-looking-back "\\(css\\|styled[[:alnum:].()]+\\)" beg)
       (goto-char (1+ beg))
       (while (re-search-forward ".*?:" end t)
         (put-text-property (match-beginning 0) (match-end 0)
@@ -13188,7 +13188,7 @@ Prompt user if TAG-NAME isn't provided."
     (cond
      ((and (setq beg (web-mode-part-token-beginning-position pos))
            (web-mode-looking-at-p "`" beg)
-           (web-mode-looking-back "\\(styled[[:alnum:].]+\\|css\\)" beg))
+           (web-mode-looking-back "\\(styled[[:alnum:].()]+\\|css\\)" beg))
       beg)
      (t
       nil)
